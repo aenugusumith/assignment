@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>getelement</title>
+</head>
+<body>
+  <div id="demo">
+    <div>1</div>
+    <div>2</div>
+    <div>
+      <div id="hello">Hello world!</div>
+    </div>
+    <div>3</div>
+  </div>
+  <script>
+  const getElementById = (element, id) => {
+    const queue = [element];
+    while (queue.length) {
+      const curr = queue.shift();
+      if (curr.id === id) {
+        return curr;
+      }
+      if (curr.children.length) {
+        queue.push(...curr.children);
+      }
+    }
+  };
+  console.log(getElementById(document.documentElement, 'hello').innerHTML); // Hello world!
+  </script>
+</body>
+</html>
